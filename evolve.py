@@ -88,7 +88,7 @@ print "Volatility Version: " + constants.VERSION
 
 @route('/')
 def index():
-    return bottle.static_file('eVOLve.htm',root='web')
+    return bottle.static_file('evolve.htm',root='web')
 
 @route('/web/:path#.+#', name='web')
 def static(path):
