@@ -16,6 +16,7 @@ if not args.file:
     print "RAM dump file is required."
     exit()
 
+
 import sys
 import volatility
 import bottle
@@ -40,6 +41,7 @@ Plugins = {'plugins':[]}
 def BuildPluginList():
     Plugins['plugins'] = []
     #cmds = registry.get_plugin_classes(commands.Command, lower = True)
+    config.OUTPUT_FILE='/usr/local/bin/evolve/databases/' + config.OUTPUT_FILE.split('/')[-1]
     con = sqlite3.connect(config.OUTPUT_FILE)
     curs = con.cursor()
     for cmdname in sorted(cmds):
