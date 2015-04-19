@@ -22,6 +22,7 @@ import volatility
 import bottle
 import sqlite3
 import json
+import hashlib
 
 import volatility.constants as constants
 import volatility.registry as registry
