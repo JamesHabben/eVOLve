@@ -41,7 +41,7 @@ Plugins = {'plugins':[]}
 def BuildPluginList():
     Plugins['plugins'] = []
     #cmds = registry.get_plugin_classes(commands.Command, lower = True)
-    config.OUTPUT_FILE='/usr/local/bin/evolve/databases/' + config.OUTPUT_FILE.split('/')[-1]
+    config.OUTPUT_FILE='/usr/local/bin/evolve/databases/' + hashlib.md5(open(args.file).read()).hexdigest()
     con = sqlite3.connect(config.OUTPUT_FILE)
     curs = con.cursor()
     for cmdname in sorted(cmds):
