@@ -301,6 +301,21 @@ def run_plugin_process(name, queue, config, cmds):
         command.render_sqlite(config.OUTPUT_FILE, calc)
     except Exception as err:
         print name + ': ' + err.message
+        outfd = open('temp','w')	
+        command.render_text(outfd, calc)
+	conn = sqlite3.connect(config.OUTPUT_FILE)
+	outfd.close
+	with open ("temp", "r") as myfile:
+ 	   outfd = myfile.readlines()
+	c = conn.cursor()
+
+	with conn:
+		c.execute('CREATE TABLE IF NOT EXISTS '+name + '(data text)')	
+		for i in range(len(outfd)):
+
+			outfd[i] = outfd[i].replace(' ','&nbsp;&nbsp;')
+			outfd[i] = outfd[i].replace('-','-&nbsp;')			
+			c.execute('insert into '+name+' VALUES (?)',(outfd[i],))
     finally:
         queue.put(name)
     return
