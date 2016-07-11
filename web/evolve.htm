@@ -1,108 +1,165 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script src="web/js/jquery-2.1.3.min.js" type="text/javascript"></script>
-<script src="web/js/jqueryFileTree.js" type="text/javascript"></script>
-<script src="web/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="web/js/dataTables.colReorder.js" type="text/javascript"></script>
-<script src="web/js/dataTables.colVis.js" type="text/javascript"></script>
-<script src="web/js/evolve.js" type="text/javascript"></script>
+    <link rel="icon" type="image/png" id="favicon" href="web/images/favicon.png"/>
+    <title>eVOLve - Web Interface for Volatility Framework</title>
+    <script src="web/js/jquery-2.1.3.min.js" type="text/javascript"></script>
+    <script src="web/js/jqueryFileTree.js" type="text/javascript"></script>
+    <script src="web/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="web/js/dataTables.colReorder.js" type="text/javascript"></script>
+    <script src="web/js/dataTables.colVis.js" type="text/javascript"></script>
+    <!-- Bootstrap -->
+    <script src="web/js/bootstrap.min.js" type="text/javascript"></script>
+  
+    <script src="web/js/evolve.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="web/css/jqueryFileTree.css" type="text/css" />
-<link rel="stylesheet" href="web/css/jquery.dataTables.min.css" type="text/css" />
-<link rel="stylesheet" href="web/css/dataTables.colReorder.css" type="text/css" />
-<link rel="stylesheet" href="web/css/dataTables.colVis.css" type="text/css" />
-<link rel="stylesheet" href="web/css/evolve.css" type="text/css" />
-<styleaaa type="text/css">
-    <!--
-    body {margin:0; font-family:‘Lucida Sans Unicode’,‘Lucida Grande’,sans-serif; display:flex; }
-    #header {background-color:black; width:full; height:38px; color:white; font-size:35pt; padding:10px;}
-    #dumpdata {background-color:black; padding:2px 7px 2px 7px;}
-    #dumpfile {color:grey;}
-    #profile {color:grey; float:right;}
-    #volhdr {font-size:16pt;}
-    #evover {font-size:10pt;}
-    #twitter {font-size:10pt; float:right;}
-    #twitter a {color:white;}
-    .box {display:flex;}
-    .plugindata {background-color:#B2CFE6;}
-    .plugin {padding:3px; width:215px;}
-    .pluginshowdata {float:right; background:#FFD383; width:55px; text-align:center; border:1px solid black; cursor:pointer;}
-    .pluginrun {float:right; background:#FFD383; width:55px; text-align:center; border:1px solid black; cursor:pointer;}
-    .pluginrunning {float:right; background:lightgrey; width:55px; text-align:center; border:1px solid black;}
-    .oddd {background:lightgrey;}
-    .datatablehdr {background:#9B9A9A; padding:3px; text-align:center;}
-    .tab {background:lightgrey; padding:2px; margin:2px; cursor:pointer;}
-    .activetab {background-color:#B2CFE6; cursor:default;}
-    .morphtag {background-color:#B2CFE6; border:1px solid grey; padding:2px; cursor:pointer; margin:2px}
-    .activemorphtag {background-color:#2DA2FF;}
-    #dataview {overflow:hidden; display:none; border:2px solid black; padding:5px;}
-    #loading {overflow:hidden; display:none; position:absolute; height:100%; width:100%; background:black; z-index:1; opacity:0.7; color:white;
-            text-align:center; font-size:50px;}
-    #datahdr {font-size:20pt;}
-    #showsqlbutton {background:#FFD383; border:1px solid black; padding:1px; cursor:pointer;}
-    #runsqlbutton {background:#FFD383; border:1px solid black; padding:1px; cursor:pointer;}
-    #datasql {margin-left:0px; display:inline-block; width:500px;}
-    #sqlerror {background:pink; display:none; padding:3px;}
-    tar:hover {background-color:#B2CFE6;}
-    tar:hover td {background-color:transparent;}
-    #configview {overflow:hidden; display:none; border: 2px solid black; padding: 5px;}
-    #confighdr {font-size:20pt;}
-    #configmsg {padding:3px; display:none;}
-    .configmsggood {background:lightgreen; color:green;}
-    .configmsgerr {background:pink; color:red;}
-    .configbox {border:2px solid grey; padding:10px; margin-top:5px;}
-    .configboxhdr {font-weight:bold;}
-    .configboxdesc {font-size:10pt;}
-    .frmfielddiv {text-align:right;}
-    .browsebtn {border:1px solid black; background:lightgrey; padding:1px; font-size:10pt; cursor:pointer;}
-    .frmfield {width:80%; margin-right:5px;}
-    .reqnote {font-size:8pt; float:left; color:red; position:relative; top:-8px}
-    #background {display:none; position:absolute; height:100%; width:100%; top:0; left:0; background:black; z-index:1;}
-    #filetreediv {display:none; z-index:10; background:white; position:absolute; top:20; left:150; border:2px solid grey; overflow:scroll;}
-    -->
-</styleaaa>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="web/css/bootstrap.min.css">
+    <link rel="stylesheet" href="web/css/jqueryFileTree.css" type="text/css" />
+    <link rel="stylesheet" href="web/css/jquery.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="web/css/dataTables.colReorder.css" type="text/css" />
+    <link rel="stylesheet" href="web/css/dataTables.colVis.css" type="text/css" />
+    <link rel="stylesheet" href="web/css/evolve.css" type="text/css" />
+    <styleaaa type="text/css">
+        <!--
+        body {margin:0; font-family:‘Lucida Sans Unicode’,‘Lucida Grande’,sans-serif; display:flex; }
+        #header {background-color:black; width:full; height:38px; color:white; font-size:35pt; padding:10px;}
+        #dumpdata {background-color:black; padding:2px 7px 2px 7px;}
+        #dumpfile {color:grey;}
+        #profile {color:grey; float:right;}
+        #volhdr {font-size:16pt;}
+        #evover {font-size:10pt;}
+        #twitter {font-size:10pt; float:right;}
+        #twitter a {color:white;}
+        .box {display:flex;}
+        .plugindata {background-color:#B2CFE6;}
+        .plugin {padding:3px; width:215px;}
+        .pluginshowdata {float:right; background:#FFD383; width:55px; text-align:center; border:1px solid black; cursor:pointer;}
+        .pluginrun {float:right; background:#FFD383; width:55px; text-align:center; border:1px solid black; cursor:pointer;}
+        .pluginrunning {float:right; background:lightgrey; width:55px; text-align:center; border:1px solid black;}
+        .oddd {background:lightgrey;}
+        .datatablehdr {background:#9B9A9A; padding:3px; text-align:center;}
+        .tab {background:lightgrey; padding:2px; margin:2px; cursor:pointer;}
+        .activetab {background-color:#B2CFE6; cursor:default;}
+        .morphtag {background-color:#B2CFE6; border:1px solid grey; padding:2px; cursor:pointer; margin:2px}
+        .activemorphtag {background-color:#2DA2FF;}
+        #dataview {overflow:hidden; display:none; border:2px solid black; padding:5px;}
+        #loading {overflow:hidden; display:none; position:absolute; height:100%; width:100%; background:black; z-index:1; opacity:0.7; color:white;
+                text-align:center; font-size:50px;}
+        #datahdr {font-size:20pt;}
+        #showsqlbutton {background:#FFD383; border:1px solid black; padding:1px; cursor:pointer;}
+        #runsqlbutton {background:#FFD383; border:1px solid black; padding:1px; cursor:pointer;}
+        #datasql {margin-left:0px; display:inline-block; width:500px;}
+        #sqlerror {background:pink; display:none; padding:3px;}
+        tar:hover {background-color:#B2CFE6;}
+        tar:hover td {background-color:transparent;}
+        #configview {overflow:hidden; display:none; border: 2px solid black; padding: 5px;}
+        #confighdr {font-size:20pt;}
+        #configmsg {padding:3px; display:none;}
+        .configmsggood {background:lightgreen; color:green;}
+        .configmsgerr {background:pink; color:red;}
+        .configbox {border:2px solid grey; padding:10px; margin-top:5px;}
+        .configboxhdr {font-weight:bold;}
+        .configboxdesc {font-size:10pt;}
+        .frmfielddiv {text-align:right;}
+        .browsebtn {border:1px solid black; background:lightgrey; padding:1px; font-size:10pt; cursor:pointer;}
+        .frmfield {width:80%; margin-right:5px;}
+        .reqnote {font-size:8pt; float:left; color:red; position:relative; top:-8px}
+        #background {display:none; position:absolute; height:100%; width:100%; top:0; left:0; background:black; z-index:1;}
+        #filetreediv {display:none; z-index:10; background:white; position:absolute; top:20; left:150; border:2px solid grey; overflow:scroll;}
+        -->
+    </styleaaa>
 </head>
 <body>
-<div id="header">
-    <img src="web/images/evolve-logo-sml.png" /> <span id="evover">v</span> | <span id="volhdr">Web Interface for Volatility Framework (version <span id="volver"></span>)</span>
-    <span id="twitter"><img src="/web/images/twitter.png" height="11px"/> <a href="https://twitter.com/jameshabben" target="_blank">@JamesHabben</a></span>
-</div>
-<div id="dumpdata">
-    <span id="dumpfile">File</span>
-    <span id="profilebox"><span id="profile">Profile</span><span id="profiledrop">▼</span><div id="profilelistbox">list</div></span>
+  <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand brand-title" href="#" title="Web Interface for Volatility Framework">eVOLve <span id="evover">v</span></a>
+        </div>
 
-</div>
-<div id="databox" class="box">
-<div id="pluginbox">
-    <span id="tabplugin" class="activetab tab">Plugins</span>
-    <span id="tabmorph" class="tab">Morphs</span>
-    <div id="pluglist"></div>
-    <div id="morphlist" style="display:none"></div>
-</div>
-<span id="dataview">
-    <div id="hdrcontainer">
-        <span id="datahdr" contenteditable="true"></span>
-        <span id="showsqlbutton">Show SQL</span>
-        <span id="morphtags"></span>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="tabplugin" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plugins <span class="caret"></span></a>
+              <ul id="pluglist" class="dropdown-menu">
+                <li><a href="#">Loading Please Wait..</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a id="tabmorph" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Morphs <span class="caret"></span></a>
+              <ul id="morphlist" class="dropdown-menu">
+                <li><a href="#">Loading Please Wait..</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li><a href="#">Link</a></li> -->
+            <li class="dropdown">
+              <a id="profiledrop" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span id="profile"></span>
+                <span class="caret"></span>
+            </a>
+              <ul id="profilelistbox" class="dropdown-menu"></ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+  <div class="container">
+    <div id="databox" class="box row">
+        <span id="dataview" class="col-md-12">
+            <div class="row">
+                <div id="hdrcontainer" class="col-md-4">
+                    <span id="datahdr" contenteditable="true"></span>
+                    <span id="morphtags"></span>
+                </div>
+                <div id="sqlcontainer" class="col-md-6" style="display:none;">
+                    <textarea id="datasql" class="form-control col-sm-9" rows="2"  spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+                    <div id="sqlerror">test</div>
+                </div>
+                <div class="col-md-2 pull-right">
+                    <span id="showsqlbutton" class="btn btn-primary pull-right">Show SQL</span>
+                    <span id="runsqlbutton" class="btn btn-info pull-right" title="Keyboard Shortcut: F5" style="display:none;">Run SQL</span>
+                </div>
+            </div>
+            <div id="loading"><br/><br/>Loading...</div>
+        </span>
+        <span id="configview">
+            <div id="confighdrcontainer">
+                <span id="confighdr"></span>
+                <span id="saveallbtn" class="browsebtn">Save Settings</span>
+            </div>
+            <div id="confighelptext"></div>
+            <div id="configmsg"></div>
+            <div id="configbodycontainer"></div>
+        </span>
     </div>
-    <div id="sqlcontainer" style="display:none;">
-        <textarea id="datasql" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
-        <span id="runsqlbutton" title="Keyboard Shortcut: F5">Run SQL</span>
-        <div id="sqlerror">test</div>
-    </div>
-    <div id="loading"><br/><br/>Loading...</div>
-</span>
-<span id="configview">
-    <div id="confighdrcontainer">
-        <span id="confighdr"></span>
-        <span id="saveallbtn" class="browsebtn">Save Settings</span>
-    </div>
-    <div id="confighelptext"></div>
-    <div id="configmsg"></div>
-    <div id="configbodycontainer"></div>
-</span>
-</div>
+
 <div id="filetreediv"></div>
 <div id="background"></div>
+    <hr>
+    <footer>
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object img-thumbnail" src="web/images/evolve-logo-sml.png" alt="...">
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">Web Interface for Volatility Framework (version <span id="volver"></span>)</h4>
+            <p class="text-right pull-right"> <a href="https://twitter.com/jameshabben" target="_blank">@JamesHabben</a></p>
+          </div>
+        </div>
+    </footer>
+  </div>
 </body>
 </html>

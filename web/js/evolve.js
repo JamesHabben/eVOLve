@@ -1,3 +1,4 @@
+//modified
 function GetPluginList () {
     set_timer = false
     set_timer_done = false
@@ -10,11 +11,7 @@ function GetPluginList () {
                 }),
                 function(k,v) {
                     $('#pluglist').append(
-                    '<div class="plugin plugindata" title="' + v.help + '">' +
-                    v.name +
-                    '<span class="pluginshowdata" onclick="GetData(\'' + v.name + '\')">' +
-                    'show' +
-                    '</span></div>')
+                    '<li><a href="#" title="' + v.help + '" onclick="GetData(\'' + v.name + '\')">' + v.name +'_show</a></li>')
                 }
             )
             $.each($.grep(data.plugins,
@@ -22,13 +19,11 @@ function GetPluginList () {
                     return d.data == 0 || d.data == 2
                 }),
                 function(k,v) {
-                    tag_string = '<div class="plugin" title="' + v.help + '">' + v.name
                     if (v.data == 0) {
-                        tag_string += '<span class="pluginrun" onclick="RunPlugin(\'' + v.name + '\',this)">' +
-                                      'run</span></div>'
+                        tag_string = '<li><a href="#" title="' + v.help + '" onclick="RunPlugin(\''+ v.name + '\',this)">' + v.name + '_run</a></li>'
                     }
                     else {
-                        tag_string += '<span class="pluginrunning" >running</span></div>'
+                        tag_string ='<li><a href="#" title="' + v.help + '">' + v.name + '_running</a></li>'
                         set_timer = true
                     }
                     $('#pluglist').append(tag_string)
@@ -37,15 +32,11 @@ function GetPluginList () {
             $('#morphlist').html('')
             $.each(data.morphs, function(k,v) {
                     $('#morphlist').append(
-                    '<div class="plugin plugindata" title="' + v.display + '\n' + v.helptext + '">' +
-                    v.name +
-                    '<span class="pluginshowdata" onclick="ShowMorphConfig(\'' + v.name + '\')">config</span>' +
-                    '</div>')
+                    '<li><a href="#" class="btn btn-warning btn-xs" onclick="ShowMorphConfig(\'' + v.name + '\')" title="' + v.display + '\n' + v.helptext + '">' + v.name +
+                    '_config</a></li>')
                     $.each(v.plugins, function(pk,pv) {
                         $('#morphlist').append(
-                            '<div class="plugin plugindata"><li>' + pv + '' +
-                            '<span class="pluginshowdata" onclick="GetMorph(\'' + pv + '\',\'' + v.name + '\')">show' +
-                    '</span></li></div>'
+                            '<li><a href="#" onclick="GetMorph(\'' + pv + '\',\'' + v.name + '\')">' + pv +'_show' +'</a></li>'
                         )
                     })
             })
@@ -57,26 +48,29 @@ function GetPluginList () {
     )
 
 }
-
 function GetMeta () {
     $.getJSON('/data/meta', function(data) {
         $('#volver').html(data.volversion)
         $('#evover').html('v' + data.evolveversion)
         $('#dumpfile').html( data.filepath)
         $('#profile').html( data.profilename)
+        //$('#inputsuccess2').append( data.filepath)
     })
 }
 
+
+//Modified
 function ProfileDropClick () {
     $('#profilelistbox').html('')
     if ($('#profilelistbox').is(':hidden')) {
         $.getJSON('/data/profilelist', function(data) {
-            listHtml = '<ul>'
+            //listHtml = '<li></li>'
             $.each(data, function(k, v) {
-                listHtml += '<li onclick="SetProfile(\'' + v[0] + '\')">' + v[0]
+                $('#profilelistbox').append('<li onclick="SetProfile(\'' + v[0] + '\')"><a href="#">' + v[0] + '</a></li>')
+                //listHtml += '<li onclick="SetProfile(\'' + v[0] + '\')">' + v[0] + '</li>'
             })
-            listHtml += '</ul>'
-            $('#profilelistbox').html(listHtml)
+            //listHtml += '</ul>'
+            //$('#profilelistbox').html(listHtml)
             $('#profilelistbox').toggle()
         })
     }
@@ -84,6 +78,7 @@ function ProfileDropClick () {
         $('#profilelistbox').toggle()
     }
 }
+
 
 function SetProfile (pname) {
     $.ajax({url:'/config/profile/' + pname}).success(function(){
@@ -317,7 +312,7 @@ function ShowData (data) {
     $('#datatable').DataTable({
         'dom':'RClfrtip',
         'lengthMenu': [[25, 50, 100, -1], [25, 50, 100, 'All']],
-        'pageLength':100,
+        'pageLength':50,
         'scrollY':'68%',
         'scrollX': true
     })
@@ -350,14 +345,14 @@ var SqlShown = false
 
 function ShowSql () {
     if (!SqlShown) {
-        //$("#sqlcontainer").css({"display":"block"})
         $("#sqlcontainer").slideDown()
         $("#showsqlbutton").html("Hide SQL")
+        $('#runsqlbutton').slideDown()
     }
     else {
-        //$("#sqlcontainer").css({"display":"none"})
         $("#sqlcontainer").slideUp()
         $("#showsqlbutton").html("Show SQL")
+        $('#runsqlbutton').slideUp()
     }
     SqlShown = !SqlShown
 }
@@ -385,16 +380,16 @@ function RunSql () {
 function TabClickPlugin () {
     $('#tabplugin').addClass('activetab')
     $('#tabmorph').removeClass('activetab')
-    $('#pluglist').css({'display':'block'})
-    $('#morphlist').css({'display':'none'})
     $('#tabmorph').click(TabClickMorph)
     $('#tabplugin').click(null)
 }
 function TabClickMorph () {
     $('#tabmorph').addClass('activetab')
     $('#tabplugin').removeClass('activetab')
-    $('#morphlist').css({'display':'block'})
-    $('#pluglist').css({'display':'none'})
+    // $('#morphlist').css({'display':'block'})
+    //$('#pluglist').fadeOut()
+    //$('#morphlist').fadeIn()
+    // $('#pluglist').css({'display':'none'})
     $('#tabplugin').click(TabClickPlugin)
     $('#tabmorph').click(null)
 }
@@ -443,4 +438,5 @@ $(document).ready(function() {
     //$("#")
     $('#tabmorph').click(TabClickMorph)
     $('#profiledrop').click(ProfileDropClick)
+
 })
