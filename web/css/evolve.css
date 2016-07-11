@@ -1,37 +1,38 @@
-body {margin:0; font-family:‘Lucida Sans Unicode’,‘Lucida Grande’,sans-serif; display:flex; flex-direction:column; height:100%;
-        display:-webkit-flex; -webkit-flex-direction:column;}
+body { padding-top: 70px; }
+/*body {margin:0; font-family:‘Lucida Sans Unicode’,‘Lucida Grande’,sans-serif; display:flex; flex-direction:column; height:100%;
+        display:-webkit-flex; -webkit-flex-direction:column;}*/
 #header {background-color:black; width:full; height:38px; color:white; font-size:35pt; padding:10px; flex: 0 0 38px; -webkit-flex: 0 0 38px;}
-#dumpdata {background-color:black; padding:2px 7px 2px 7px; flex: 0 0 20px; -webkit-flex: 0 0 20px;}
+#dumpdata {<!--background-color:black; padding:2px 7px 2px 7px; flex: 0 0 20px; -webkit-flex: 0 0 20px;-->}
 #dumpfile {color:grey;}
 #profilebox {color:white; background:black; float:right; position:relative; overflow:hidden; width:180px; z-index:1;}
-#profiledrop {cursor:pointer; float:right;}
-#profilelistbox {z-index:1; display: none;}
-#profilelistbox ul {padding:2px; margin:1px;}
-#profilelistbox li {list-style: none; cursor:pointer; padding:1px; border: 1px solid black;}
-#volhdr {font-size:16pt;}
+//#profiledrop {cursor:pointer; float:right;}
+#profilelistbox {z-index:1;/* display: none;*/}
+//#profilelistbox ul {padding:2px; margin:1px;}
+//#profilelistbox li {list-style: none; cursor:pointer; padding:1px; border: 1px solid black;}
+#volhdr {font-size:16pt;color: #FFF;}
 #evover {font-size:10pt;}
 #twitter {font-size:10pt; float:right;}
 #twitter a {color:white;}
-.box {display:flex; flex:1 1 100px; display:-webkit-flex; -webkit-flex:1 1 100px;}
-#pluginbox {border: 2px solid black; padding:1px; overflow:scroll; flex: 0 0 auto; -webkit-flex: 0 0 auto;}
-.plugindata {background-color:#B2CFE6;}
-.plugin {padding:3px; width:215px;}
-.pluginshowdata {float:right; background:#FFD383; width:55px; text-align:center; border:1px solid black; cursor:pointer;}
-.pluginrun {float:right; background:#FFD383; width:55px; text-align:center; border:1px solid black; cursor:pointer;}
-.pluginrunning {float:right; background:lightgrey; width:55px; text-align:center; border:1px solid black;}
+//.box {display:flex; flex:1 1 100px; display:-webkit-flex; -webkit-flex:1 1 100px;}
+//#pluginbox {border: 1px solid #ddd;/*/ padding:1px; overflow:scroll; flex: 0 0 auto; -webkit-flex: 0 0 auto;/*/}
+//.plugindata {background-color:#B2CFE6;}
+//.plugin {padding:3px; width: 100%; /*/width:215px;/*/}
+//.pluginshowdata {float:right; background:#FFD383; width:55px; text-align:center; border:1px solid black; cursor:pointer;}
+//.pluginrun {float:right; background:#FFD383; width:55px; text-align:center; border:1px solid black; cursor:pointer;}
+//.pluginrunning {float:right; background:lightgrey; width:55px; text-align:center; border:1px solid black;}
 .oddd {background:lightgrey;}
 .datatablehdr {background:#9B9A9A; padding:3px; text-align:center;}
 .tab {background:lightgrey; padding:2px; margin:2px; cursor:pointer;}
-.activetab {background-color:#B2CFE6; cursor:default;}
+//.activetab {background-color:#B2CFE6; cursor:default;}
 .morphtag {background-color:#B2CFE6; border:1px solid grey; padding:2px; cursor:pointer; margin:2px}
 .activemorphtag {background-color:#2DA2FF;}
-#dataview {overflow:scroll; width:100%; display:none; border:2px solid black; padding:5px;}
+#dataview {/*/overflow:scroll; width:100%;/*/ display:none; border:1px solid #ddd; padding:5px;}
 #loading {overflow:hidden; display:none; position:absolute; height:100%; width:100%; background:black; z-index:1; opacity:0.7; color:white;
         text-align:center; font-size:50px;}
 #datahdr {font-size:20pt;}
-#showsqlbutton {background:#FFD383; border:1px solid black; padding:1px; cursor:pointer;}
-#runsqlbutton {background:#FFD383; border:1px solid black; padding:1px; cursor:pointer;}
-#datasql {margin-left:0px; display:inline-block; width:500px;}
+// #showsqlbutton {background:#FFD383; border:1px solid black; padding:1px; cursor:pointer;}
+// #runsqlbutton {background:#FFD383; border:1px solid black; padding:1px; cursor:pointer;}
+#datasql {margin-left:0px; display:inline-block; /*/width:500px;/*/}
 #sqlerror {background:pink; display:none; padding:3px;}
 tar:hover {background-color:#B2CFE6;}
 tar:hover td {background-color:transparent;}
@@ -50,3 +51,20 @@ table#datatable tr td{white-space:nowrap}
 .reqnote {font-size:8pt; float:left; color:red; position:relative; top:-8px}
 #background {display:none; position:absolute; height:100%; width:100%; top:0; left:0; background:black; z-index:1;}
 #filetreediv {display:none; z-index:10; background:white; position:absolute; top:20; left:150; border:2px solid grey; overflow:scroll;}
+
+.brand-title {
+	font-size: 29pt;
+}
+
+#dataview .dataTables_wrapper {
+	overflow: unset;
+}
+
+#pluglist, #morphlist {
+	overflow-y: scroll;
+	max-height: 500px;
+}
+
+#databox {
+	min-height: 350px;
+}
