@@ -11,7 +11,7 @@ function GetPluginList () {
                 }),
                 function(k,v) {
                     $('#pluglist').append(
-                    '<li><a href="#" title="' + v.help + '" onclick="GetData(\'' + v.name + '\')">' + v.name +'<span class="badge">show</span></a></li>')
+                    '<li><a href="#" title="' + v.help + '" onclick="GetData(\'' + v.name + '\')">' + v.name +'_show</a></li>')
                 }
             )
             $.each($.grep(data.plugins,
